@@ -1,0 +1,35 @@
+{% for empleado in empleados %}
+<form method="post" action="/update" enctype="multipart/form-data">
+    <!-- el action ahora es para actualizar un valor, no para almacenar -->
+    <!-- el método va por post porque si va por get, todo va por url -->
+    
+    <!-- el id se pone para probar, después se inhabilita, porque no queremos que alguien pueda modificar el id a mano. -->
+    Id:
+    <input type="text" name="txtID" value="{{empleado[0]}}" id="txtID">
+    <br>
+    <br>
+
+    Nombre:
+    <input type="text" name="txtNombre" value="{{empleado[1]}}" id="txtNombre" />
+    <br>
+    <br>
+  
+    Correo:
+    <input type="email" name="txtCorreo" value="{{empleado[2]}}" id="txtCorreo" />
+    <br>
+    <br>
+    Foto:     {{empleado[3]}}
+    <input type="file" name="txtFoto" value="" id="txtFoto" />
+    <br>
+    <br>
+    <input type="submit" value="Editar" />
+  </form>
+
+
+
+    
+
+    
+    
+
+{% endfor %}
