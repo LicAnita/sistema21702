@@ -1,36 +1,60 @@
+{% include 'header.html' %}
+
+<br />
+<a href="{{url_for('create')}}" class="btn btn-primary">Crear Empleado</a>
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
     <title>Pagina Inicio</title>
-</head>
-<body>
+  </head>
+  <body>
     <table class="table table-light">
-        <thead class="thead-light">
-            <tr>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Foto</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- uso jinja para iterar como si fuera javascript -->
-            {% for empleado in empleados %}
-            <tr>
-                <td>{{empleado[0]}}</td>
-                <td>{{empleado[1]}}</td>
-                <td>{{empleado[2]}}</td>
-                <td>{{empleado[3]}}</td>
-                <!-- cuando metes el formulario por get le podes mandar los pedidos por url, en cambio por post van por adentro -->
-                <td><a href="/edit/{{empleado[0]}}">Editar</a> | <a href="/destroy/{{empleado[0]}}">Borrar</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
+      <thead class="thead-light">
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Foto</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- uso jinja para iterar como si fuera javascript -->
+        {% for empleado in empleados %}
+        <tr>
+          <td>{{empleado[0]}}</td>
+          <td>
+            <img
+              class="img-thumbnail"
+              width="100"
+              src="uploads/{{empleado[3]}}"
+              alt=""
+            />
+          </td>
+          <td>{{empleado[1]}}</td>
+          <td>{{empleado[2]}}</td>
+          <!-- cuando metes el formulario por get le podes mandar los pedidos por url, en cambio por post van por adentro -->
+          <td>
+            <a href="/edit/{{empleado[0]}}" class="btn btn-warning">Editar</a> |
+            <a
+              href="/destroy/{{empleado[0]}}"
+              class="btn btn-danger"
+              onclick="return confirm('¿Posta lo querés borrar?')"
+              >Borrar</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
-
-</body>
+  </body>
 </html>
+
+{% include 'footer.html' %}
